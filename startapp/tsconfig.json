@@ -4,7 +4,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["app/*"]
     }
   },
   "include": [
@@ -13,4 +13,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]
+
+  
 }
+

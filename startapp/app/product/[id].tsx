@@ -11,6 +11,8 @@ export default function ProductDetail() {
   const [qtd, setQtd] = React.useState(1);
   const [total, setTotal] = React.useState(0);
 
+  const [observation, setObservation] = React.useState('')
+
   React.useEffect(() => {
     if (product) {
       const newTotal = qtd * product.price;
@@ -48,6 +50,8 @@ export default function ProductDetail() {
           style={styles.obs}
           placeholder='Ex: Sem embalagem, lavado, etc.'
           placeholderTextColor='#888'
+          value={observation}
+          onChangeText={setObservation}
           />
         </View>
       </ScrollView>

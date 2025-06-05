@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { products, Product } from '@/data/products';
+import { products, Product } from '../src/data/products';
 import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {

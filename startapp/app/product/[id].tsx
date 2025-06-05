@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { products } from '@/data/products';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Product, products } from '../../src/data/products';
+import { useCart }  from '../contexts/cartContext'
+
 
 export default function ProductDetail() {
   const { id } = useLocalSearchParams();
@@ -12,6 +14,24 @@ export default function ProductDetail() {
   const [total, setTotal] = React.useState(0);
 
   const [observation, setObservation] = React.useState('')
+
+  const { addToCart } = useCart();
+
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    const item = {
+      id: realProduct.id,
+      name: realProduct.name,
+      price: realProduct.price,
+      quantity: qtd,
+      observation: observation,
+      image: realProduct.image
+    };
+
+    addToCart(item);
+    alert('Produto adicionado ao carrinho')
+  };
 
   React.useEffect(() => {
     if (product) {
@@ -33,59 +53,71 @@ export default function ProductDetail() {
     );
   }
 
+  const realProduct = product as Product
+
   return (
-    <>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Image source={{ uri: product.image }} style={styles.image} />
-        <View style={styles.box}>
-          <View>
-            <Text style={styles.name}>{product.name}</Text>
-            <Text style={styles.description}>{product.description}</Text>
-          </View>
-          <Text style={styles.price}>R$ {product.price.toFixed(2)}</Text>
-        </View>
-        <View style={styles.observation}>
-          <Text style={styles.textobs}>Alguma observação?</Text>
-          <TextInput
-          style={styles.obs}
-          placeholder='Ex: Sem embalagem, lavado, etc.'
-          placeholderTextColor='#888'
-          value={observation}
-          onChangeText={setObservation}
-          />
-        </View>
-      </ScrollView>
-
-      <View style={styles.final}>
-        <View style={styles.quantity}>
-          <TouchableOpacity onPress={() => setQtd(qtd + 1)}>
-            <Text style={styles.buttonquantity}>+</Text>
-          </TouchableOpacity>
-
-          <Text>{qtd}</Text>
-
-          <TouchableOpacity onPress={() => setQtd(prev => Math.max(1, prev - 1))}>
-            <Text style={styles.buttonquantitymenos}>-</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.boton} onPress={() => alert('Produto adicionado ao carrinho!')}>
-          <View style={styles.direction}>
-            <Text style={styles.botonText}>Adicionar</Text>
-            <Text style={styles.botonText}>{totalFormatado}</Text>
-          </View>
+    
+      <View style={styles.page}>
+        <TouchableOpacity style={styles.backview} onPress={() => router.back()}>
+          <Image source={require('../../assets/images/volte.png')} style={styles.back} />
         </TouchableOpacity>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Image source={{ uri: product.image }} style={styles.image} />
+          <View style={styles.box}>
+            <View>
+              <Text style={styles.name}>{product.name}</Text>
+              <Text style={styles.description}>{product.description}</Text>
+            </View>
+            <Text style={styles.price}>R$ {product.price.toFixed(2)}</Text>
+          </View>
+          <View style={styles.observation}>
+            <Text style={styles.textobs}>Alguma observação?</Text>
+            <TextInput
+            style={styles.obs}
+            placeholder='Ex: Sem embalagem, lavado, etc.'
+            placeholderTextColor='#888'
+            value={observation}
+            onChangeText={setObservation}
+            />
+          </View>
+        </ScrollView>
+        <View style={styles.final}>
+          <View style={styles.quantity}>
+            <TouchableOpacity onPress={() => setQtd(qtd + 1)}>
+              <Text style={styles.buttonquantity}>+</Text>
+            </TouchableOpacity>
+            <Text>{qtd}</Text>
+            <TouchableOpacity onPress={() => setQtd(prev => Math.max(1, prev - 1))}>
+              <Text style={styles.buttonquantitymenos}>-</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.boton} onPress={() => {
+            handleAddToCart();
+            router.back()
+          }}>
+            <View style={styles.direction}>
+              <Text style={styles.botonText}>Adicionar</Text>
+              <Text style={styles.botonText}>{totalFormatado}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-    </>
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    paddingBottom: 100, // espaço para o botão fixo no rodapé
+    paddingBottom: 100,
     backgroundColor: '#fff',
     alignItems: 'center',
     height: '80%'
+  },
+
+  page: {
+    backgroundColor: '#fff',
+    flex: 1
   },
   image: {
     width: '90%',
@@ -104,6 +136,20 @@ const styles = StyleSheet.create({
     color: '#666',
     marginBottom: 12,
   },
+  back: {
+    height: 30,
+    width: 30,
+    backgroundColor: '#fff',
+    marginLeft: 20,
+  },
+  backview: {
+    height: '10%',
+    width: '5%',
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+
   description: {
     fontSize: 16,
     color: '#444',
@@ -121,7 +167,7 @@ const styles = StyleSheet.create({
   quantity: {
     flexDirection: 'row',
     gap: 20,
-    bottom: 20,
+    bottom: 0,
     left: 20,
     display: 'flex',
     alignItems: 'center'
@@ -155,7 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: '#EB5160',
     marginTop: 0,
-    bottom: 20
+    
   },
   botonText: {
     color: '#fff',
@@ -184,7 +230,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderColor: '#ccc',
-    height: '20%'
+    height: '15%'
   },
 
   obs: {

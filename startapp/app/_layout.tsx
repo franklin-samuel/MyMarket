@@ -10,24 +10,27 @@ export default function RootLayout() {
           headerShown: true,
           headerTintColor: '#fff',
           headerStyle: {
-            backgroundColor: '#EB5160',
+            backgroundColor: '#e74c3c',
           },
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          tabBarStyle: {
+            borderTopColor: '#CCC'
+          }
         }}
       >
         <Tabs.Screen 
           name="index" 
           options={{ 
-            title: 'Products', tabBarActiveTintColor: '#EB5160',
+            title: 'Products', tabBarActiveTintColor: '#e74c3c',
             tabBarIcon: ({ focused, color, size }) => (
               <Image 
                 source={require('../assets/images/producticon.png')} 
                 style={{
                   width: size ?? 24, 
                   height: size ?? 24, 
-                  tintColor: focused ? '#EB5160' : '#888',
+                  tintColor: focused ? '#e74c3c' : '#888',
                 }} 
               />
             ),
@@ -37,14 +40,14 @@ export default function RootLayout() {
         <Tabs.Screen 
           name='carrinho' 
           options={{ 
-            title: 'Carrinho', tabBarActiveTintColor: '#EB5160',
+            title: 'Carrinho', tabBarActiveTintColor: '#e74c3c',
             tabBarIcon: ({ focused, color, size }) => (
               <Image 
                 source={require('../assets/images/carticon.png')} 
                 style={{
                   width: size ?? 24, 
                   height: size ?? 24, 
-                  tintColor: focused ? '#EB5160' : '#888'
+                  tintColor: focused ? '#e74c3c' : '#888'
                 }} 
               />
             ),

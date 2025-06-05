@@ -30,7 +30,6 @@ export default function ProductDetail() {
     };
 
     addToCart(item);
-    alert('Produto adicionado ao carrinho')
   };
 
   React.useEffect(() => {
@@ -39,6 +38,11 @@ export default function ProductDetail() {
       setTotal(newTotal);
     }
   }, [qtd, product]);
+
+  React.useEffect(() => {
+    setObservation('');
+    setQtd(1);
+  }, [product?.id]);
 
   const totalFormatado = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -137,10 +141,11 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   back: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
     backgroundColor: '#fff',
     marginLeft: 20,
+    marginTop: 50,
   },
   backview: {
     height: '10%',
@@ -148,6 +153,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: '#fff',
+    
   },
 
   description: {
@@ -167,7 +173,7 @@ const styles = StyleSheet.create({
   quantity: {
     flexDirection: 'row',
     gap: 20,
-    bottom: 0,
+    bottom: 20,
     left: 20,
     display: 'flex',
     alignItems: 'center'
@@ -201,6 +207,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: '#EB5160',
     marginTop: 0,
+    marginBottom: 40
     
   },
   botonText: {
@@ -222,7 +229,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 5,
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
@@ -230,7 +237,9 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderColor: '#ccc',
-    height: '15%'
+    height: '15%',
+    gap: 20,
+
   },
 
   obs: {

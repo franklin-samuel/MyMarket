@@ -2,9 +2,13 @@ import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { products, Product } from '../src/data/products';
 import { useRouter } from 'expo-router';
+import { useCart } from './contexts/cartContext';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const {cart} = useCart();
+
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   function renderProduct({ item }: { item: Product }) {
     return (
@@ -34,8 +38,30 @@ export default function HomeScreen() {
         renderItem={renderProduct}
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
       />
+
+      {cart.length > 0 && (
+        <TouchableOpacity
+        style={styles.gotocart}
+        onPress={() => router.push('/carrinho')}
+        activeOpacity={0.8}>
+          <View style={styles.iconandtext}>
+            <Image
+              source={require('../assets/images/carticon.png')}
+              style={[styles.iconCart]}
+            />
+            <Text style={styles.gotocartText}>Carrinho</Text>
+          </View>
+          <View style={styles.total}>
+            <Text style={styles.totaltext}>R$ {total.toFixed(2)}</Text>
+          </View>
+          
+        </TouchableOpacity>
+      )}
+      
     </View>
   );
+
+  
 }
 
 const styles = StyleSheet.create({
@@ -49,6 +75,43 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     elevation: 2,
 
+  },
+
+  gotocart: {
+    height: '10%',
+    display: 'flex',
+    flexDirection: 'row',
+    borderTopColor: '#CCC',
+    borderTopWidth: 1
+  },
+
+  iconandtext: {
+    marginLeft: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10
+  },
+  gotocartText: {
+
+  },
+
+  iconCart: {
+    width: 30,
+    height: 30,
+    
+  },
+
+  total: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: '70%',
+  },
+
+  totaltext: {
+    marginRight: 25,
+    fontSize: 18,
+    color: '#e74c3c',
+    fontWeight: 'bold'
   },
 
   image: {

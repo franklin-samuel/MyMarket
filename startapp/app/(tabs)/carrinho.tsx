@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { useCart } from './contexts/cartContext';
+import { useCart } from '../contexts/cartContext';
+import { useRouter } from 'expo-router';
 
 export default function ScreenCart() {
     const { cart, updateQuantity, clearCart } = useCart();
+
+    const router = useRouter();
 
     const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -19,7 +22,7 @@ export default function ScreenCart() {
                                 <TouchableOpacity onPress={() => updateQuantity(item.id, 0)}>
                                     <View style={styles.trashIconView}>
                                         <Image
-                                            source={require('../assets/images/lixo.png')}
+                                            source={require('../../assets/images/lixo.png')}
                                             style={styles.trashIcon}
                                         />
                                     </View>
@@ -65,7 +68,7 @@ export default function ScreenCart() {
 
             <View style={styles.totalContainer}>
                 <Text style={styles.totalText}>Total: R$ {total.toFixed(2)}</Text>
-                <TouchableOpacity style={styles.clearButton} onPress={clearCart}>
+                <TouchableOpacity style={styles.clearButton} onPress={ () => router.push('/address') }>
                     <Text style={styles.clearButtonText}>Continuar</Text>
                 </TouchableOpacity>
             </View>
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     page: {
         backgroundColor: '#fff',
         flex: 1,
+        marginTop: 40
     },
     card: {
         flexDirection: 'row',
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,
-        backgroundColor: '#ddd',
+        backgroundColor: '#fff',
         borderRadius: 5,
     },
     totalContainer: {
@@ -154,7 +158,7 @@ const styles = StyleSheet.create({
     },
 
     trashIconView: {
-        backgroundColor: '#ccc',
+        backgroundColor: '#fff',
         width: 26,
         height: 37,
         alignItems: 'center',

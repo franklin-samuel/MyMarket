@@ -62,9 +62,6 @@ export default function ProductDetail() {
   return (
     
       <View style={styles.page}>
-        <TouchableOpacity style={styles.backview} onPress={() => router.back()}>
-          <Image source={require('../../assets/images/volte.png')} style={styles.back} />
-        </TouchableOpacity>
         <ScrollView contentContainerStyle={styles.container}>
           <Image source={{ uri: product.image }} style={styles.image} />
           <View style={styles.box}>
@@ -184,11 +181,11 @@ const styles = StyleSheet.create({
 
   buttonquantity: {
     fontSize: 25,
-    color: '#EB5160'
+    color: '#e74c3c'
   },
   buttonquantitymenos: {
     fontSize: 40,
-    color: '#EB5160'
+    color: '#e74c3c'
   },
 
   box: {
@@ -205,7 +202,7 @@ const styles = StyleSheet.create({
   boton: {
     width: '70%',
     borderRadius: 6,
-    backgroundColor: '#EB5160',
+    backgroundColor: '#e74c3c',
     marginTop: 0,
     marginBottom: 40
     

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { products, Product } from '../src/data/products';
+import { products, Product } from '../../src/data/products';
 import { useRouter } from 'expo-router';
-import { useCart } from './contexts/cartContext';
+import { useCart } from '../contexts/cartContext';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -36,17 +36,17 @@ export default function HomeScreen() {
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={renderProduct}
-        contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
+        contentContainerStyle={{ paddingTop: 20, paddingBottom: 70 }}
       />
 
       {cart.length > 0 && (
         <TouchableOpacity
         style={styles.gotocart}
-        onPress={() => router.push('/carrinho')}
+        onPress={() => router.push('/(tabs)/carrinho')}
         activeOpacity={0.8}>
           <View style={styles.iconandtext}>
             <Image
-              source={require('../assets/images/carticon.png')}
+              source={require('../../assets/images/carticon.png')}
               style={[styles.iconCart]}
             />
             <Text style={styles.gotocartText}>Carrinho</Text>
@@ -64,6 +64,7 @@ export default function HomeScreen() {
   
 }
 
+
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f5f5f5' },
   card: {
@@ -77,13 +78,25 @@ const styles = StyleSheet.create({
 
   },
 
-  gotocart: {
-    height: '10%',
-    display: 'flex',
-    flexDirection: 'row',
-    borderTopColor: '#CCC',
-    borderTopWidth: 1
-  },
+gotocart: {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: 60,
+  backgroundColor: '#fff',
+  borderTopColor: '#CCC',
+  borderTopWidth: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  paddingHorizontal: 20,
+  elevation: 10,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: -2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 4,
+},
 
   iconandtext: {
     marginLeft: 15,

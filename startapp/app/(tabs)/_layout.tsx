@@ -23,6 +23,7 @@ export default function TabsLayout() {
           options={{
             title: 'Products',
             tabBarActiveTintColor: '#e74c3c',
+            headerShown: false,
             tabBarIcon: ({ focused, color, size }) => (
               <Image
                 source={require('../../assets/images/producticon.png')}

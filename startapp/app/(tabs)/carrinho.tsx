@@ -58,19 +58,20 @@ export default function ScreenCart() {
     };
 
     return (
-        <View style={styles.page}>
-            <FlatList
-                data={cart}
-                keyExtractor={(item) => item.id}
-                renderItem={renderProduct}
-                contentContainerStyle={{ paddingTop: 30, paddingBottom: 30 }}
-            />
-
-            <View style={styles.totalContainer}>
-                <Text style={styles.totalText}>Total: R$ {total.toFixed(2)}</Text>
-                <TouchableOpacity style={styles.clearButton} onPress={ () => router.push('/address') }>
-                    <Text style={styles.clearButtonText}>Continuar</Text>
-                </TouchableOpacity>
+        <View style={styles.main}>
+            <View style={styles.page}>
+                <FlatList
+                    data={cart}
+                    keyExtractor={(item) => item.id}
+                    renderItem={renderProduct}
+                    contentContainerStyle={{ paddingTop: 30, paddingBottom: 30 }}
+                />
+                <View style={styles.totalContainer}>
+                    <Text style={styles.totalText}>Total: R$ {total.toFixed(2)}</Text>
+                    <TouchableOpacity style={styles.clearButton} onPress={ () => router.push('/address') }>
+                        <Text style={styles.clearButtonText}>Continuar</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -80,7 +81,11 @@ const styles = StyleSheet.create({
     page: {
         backgroundColor: '#fff',
         flex: 1,
-        marginTop: 40
+        marginTop: 40,
+    },
+    main: {
+        height: '100%',
+        backgroundColor: '#fff'
     },
     card: {
         flexDirection: 'row',
@@ -90,7 +95,10 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         overflow: 'hidden',
         elevation: 2,
+        
+        
     },
+
     image: {
         width: 90,
         height: 90,

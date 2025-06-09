@@ -22,7 +22,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<CartItem[]>([]);
 
-    // Carregar dados do AsyncStorage ao iniciar
+    
     useEffect(() => {
         async function loadCart() {
             const storedCart = await AsyncStorage.getItem('@cart');
@@ -33,7 +33,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         loadCart();
     }, []);
 
-    // Salvar carrinho sempre que ele mudar
+    
     useEffect(() => {
         AsyncStorage.setItem('@cart', JSON.stringify(cart));
     }, [cart]);
@@ -65,7 +65,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const clearCart = () => {
         setCart([]);
-        AsyncStorage.removeItem('@cart'); // também limpa do armazenamento
+        AsyncStorage.removeItem('@cart'); 
     };
 
     return (

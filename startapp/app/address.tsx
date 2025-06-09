@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAddress } from './contexts/adressContext';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,7 +37,6 @@ export default function AddressScreen() {
         details,
       };
       addAddress(newAddress);
-      // Resetar campos e esconder formulário
       setLabel('');
       setStreet('');
       setNumber('');
@@ -43,78 +53,119 @@ export default function AddressScreen() {
 
   function handleContinue() {
     if (selectedAddress) {
-      router.push('/confirmation');
+      router.push('/selectPayment');
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Selecione um Endereço</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: '#fff' }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={100}
+    >
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ padding: 20 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={{ flex: 1 }}>
+          <Text style={styles.title}>Selecione um Endereço</Text>
 
-      <FlatList
-        data={addresses}
-        keyExtractor={(item) => item.id}
-        style={{ marginBottom: 20 }}
-        renderItem={({ item }) => (
-          <View style={[styles.addressCard, selectedAddress?.id === item.id && styles.selectedCard]}>
-            <TouchableOpacity style={styles.cardContent} onPress={() => handleSelect(item.id)}>
-              <View style={styles.checkbox}>
-                <View style={selectedAddress?.id === item.id ? styles.checked : styles.unchecked} />
+          <FlatList
+            data={addresses}
+            keyExtractor={(item) => item.id}
+            style={{ marginBottom: 20 }}
+            renderItem={({ item }) => (
+              <View style={[styles.addressCard, selectedAddress?.id === item.id && styles.selectedCard]}>
+                <TouchableOpacity style={styles.cardContent} onPress={() => handleSelect(item.id)}>
+                  <View style={styles.checkView}>
+                    <View style={styles.checkbox}>
+                      <View style={selectedAddress?.id === item.id ? styles.checked : styles.unchecked} />
+                    </View>
+                  </View>
+                  <View style={styles.addressInfo}>
+                    <Text style={styles.addressLabel}>{item.label}</Text>
+                    <Text style={styles.addressText}>{item.details}</Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => removeAddress(item.id)}>
+                  <Image source={require('../assets/images/lixo.png')} style={styles.trashIcon} />
+                </TouchableOpacity>
               </View>
-              <View style={styles.addressInfo}>
-                <Text style={styles.addressLabel}>{item.label}</Text>
-                <Text style={styles.addressText}>{item.details}</Text>
+            )}
+            ListEmptyComponent={<Text style={{ color: '#555' }}>Nenhum endereço salvo ainda.</Text>}
+          />
+
+          {!showForm && (
+            <View style={styles.form}>
+              <TouchableOpacity style={styles.addButton} onPress={() => setShowForm(true)}>
+                <Text style={styles.addButtonText}>+ Adicionar novo endereço</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.continueButton, !selectedAddress && { opacity: 0.5 }]}
+                disabled={!selectedAddress}
+                onPress={handleContinue}
+              >
+                <Text style={styles.buttonText}>Continuar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {showForm && (
+            <View style={styles.form}>
+              <Text style={styles.subtitle}>Novo Endereço</Text>
+
+              <TextInput placeholder="Apelido (ex: Casa)" value={label} onChangeText={setLabel} style={styles.input} />
+              <TextInput placeholder="Rua" value={street} onChangeText={setStreet} style={styles.input} />
+
+              <View style={styles.row}>
+                <TextInput
+                  placeholder="Número"
+                  value={number}
+                  onChangeText={setNumber}
+                  keyboardType="numeric"
+                  style={[styles.input, styles.halfInput]}
+                />
+                <TextInput
+                  placeholder="Complemento"
+                  value={complement}
+                  onChangeText={setComplement}
+                  style={[styles.input, styles.halfInput]}
+                />
               </View>
-            </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => removeAddress(item.id)}>
-              <Image source={require('../assets/images/lixo.png')} style={styles.trashIcon} />
-            </TouchableOpacity>
-          </View>
-        )}
-        ListEmptyComponent={<Text style={{ color: '#555' }}>Nenhum endereço salvo ainda.</Text>}
-      />
+              <View style={styles.row}>
+                <TextInput
+                  placeholder="Bairro"
+                  value={bairro}
+                  onChangeText={setBairro}
+                  style={[styles.input, styles.halfInput]}
+                />
+                <TextInput
+                  placeholder="Cidade"
+                  value={city}
+                  onChangeText={setCity}
+                  style={[styles.input, styles.halfInput]}
+                />
+              </View>
 
-      {!showForm && (
-        <View style={styles.form}>
-          <TouchableOpacity style={styles.addButton} onPress={() => setShowForm(true)}>
-            <Text style={styles.addButtonText}>+ Adicionar novo endereço</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.continueButton, !selectedAddress && { opacity: 0.5 }]}
-            disabled={!selectedAddress}
-            onPress={handleContinue}
-          >
-            <Text style={styles.buttonText}>Continuar</Text>
-          </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={handleAddAddress}>
+                <Text style={styles.buttonText}>Salvar Endereço</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.cancelButton} onPress={() => setShowForm(false)}>
+                <Text style={styles.cancelButtonText}>Cancelar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
-      )}
-
-      {showForm && (
-        <View style={styles.form}>
-          <Text style={styles.subtitle}>Novo Endereço</Text>
-          <TextInput placeholder="Apelido (ex: Casa)" value={label} onChangeText={setLabel} style={styles.input} />
-          <TextInput placeholder="Rua" value={street} onChangeText={setStreet} style={styles.input} />
-          <TextInput placeholder="Número" value={number} onChangeText={setNumber} keyboardType="numeric" style={styles.input} />
-          <TextInput placeholder="Complemento (opcional)" value={complement} onChangeText={setComplement} style={styles.input} />
-          <TextInput placeholder="Bairro" value={bairro} onChangeText={setBairro} style={styles.input} />
-          <TextInput placeholder="Cidade" value={city} onChangeText={setCity} style={styles.input} />
-
-          <TouchableOpacity style={styles.button} onPress={handleAddAddress}>
-            <Text style={styles.buttonText}>Salvar Endereço</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
@@ -154,20 +205,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   checkbox: {
-    marginTop: 5,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#999',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   unchecked: {
     width: 20,
     height: 20,
-    borderWidth: 2,
-    borderColor: '#999',
     borderRadius: 10,
+    backgroundColor: '#fff',
   },
   checked: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 14,
+    height: 14,
+    borderRadius: 7,
     backgroundColor: '#e74c3c',
+  },
+  checkView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 1,
   },
   addressInfo: {
     flexShrink: 1,
@@ -185,7 +246,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   form: {
-    marginBottom: 40,
+    marginBottom: 0,
   },
   button: {
     backgroundColor: '#e74c3c',
@@ -194,15 +255,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  continueButton: {
-    backgroundColor: '#e74c3c',
-    paddingVertical: 12,
+  cancelButton: {
+    backgroundColor: '#ccc',
+    paddingVertical: 10,
     borderRadius: 6,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 8,
   },
   buttonText: {
     color: '#fff',
+    fontWeight: 'bold',
+  },
+  cancelButtonText: {
+    color: '#333',
     fontWeight: 'bold',
   },
   addButton: {
@@ -215,5 +280,20 @@ const styles = StyleSheet.create({
     color: '#e74c3c',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  continueButton: {
+    backgroundColor: '#e74c3c',
+    paddingVertical: 12,
+    borderRadius: 6,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  halfInput: {
+    flex: 1,
   },
 });

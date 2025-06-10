@@ -108,159 +108,137 @@ export default function ProductDetail() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    paddingBottom: 100,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    height: '80%'
-  },
-
   page: {
     backgroundColor: '#fff',
     flex: 1
   },
+
+  container: {
+    padding: 16,
+    paddingBottom: 120,
+    backgroundColor: '#fff',
+    alignItems: 'center'
+  },
+
   image: {
-    width: '90%',
-    height: '50%',
-    borderRadius: 10,
+    width: '100%',
+    height: 260,
+    borderRadius: 12,
     marginBottom: 16,
-    borderWidth: 1,
+    resizeMode: 'cover',
+    borderWidth: 1
   },
+
+  box: {
+    width: '100%',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    flexDirection: 'column',
+    gap: 8
+  },
+
   name: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  price: {
-    fontSize: 20,
-    color: '#666',
-    marginBottom: 12,
-  },
-  back: {
-    height: 40,
-    width: 40,
-    backgroundColor: '#fff',
-    marginLeft: 20,
-    marginTop: 50,
-  },
-  backview: {
-    height: '10%',
-    width: '5%',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    
+    color: '#333',
   },
 
   description: {
     fontSize: 16,
-    color: '#444',
-    textAlign: 'center',
+    color: '#666',
   },
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+
+  price: {
+    fontSize: 20,
+    color: '#e74c3c',
+    fontWeight: 'bold',
+    textAlign: 'right',
   },
-  notFound: {
-    fontSize: 18,
-    color: 'red',
+
+  observation: {
+    width: '100%',
+    gap: 6,
   },
+
+  textobs: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 4
+  },
+
+  obs: {
+    backgroundColor: '#f2f2f2',
+    padding: 14,
+    borderRadius: 8,
+    fontSize: 16,
+    color: '#333'
+  },
+
   quantity: {
     flexDirection: 'row',
-    gap: 20,
-    bottom: 20,
-    left: 20,
-    display: 'flex',
-    alignItems: 'center'
-  },
-  textquantity: {
-    fontSize: 18,
+    alignItems: 'center',
+    gap: 20
   },
 
   buttonquantity: {
-    fontSize: 25,
-    color: '#e74c3c'
+    fontSize: 28,
+    color: '#e74c3c',
+    fontWeight: 'bold'
   },
+
   buttonquantitymenos: {
-    fontSize: 40,
-    color: '#e74c3c'
-  },
-
-  box: {
-    width: '90%',
-    padding: 16,
-    borderRadius: 10,
-    backgroundColor: '#f9f9f9',
-    marginBottom: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
-  boton: {
-    width: '70%',
-    borderRadius: 6,
-    backgroundColor: '#e74c3c',
-    marginTop: 0,
-    marginBottom: 40
-    
-  },
-  botonText: {
-    color: '#fff',
-    fontSize: 18,
-    textAlign: 'center',
-    paddingVertical: 12,
-    fontWeight: 'bold',
-  },
-
-  direction: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 10,
-    gap: 10,
+    fontSize: 32,
+    color: '#e74c3c',
+    fontWeight: 'bold'
   },
 
   final: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 50,
     left: 0,
-    right: 5,
+    right: 0,
     backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
     borderTopWidth: 1,
-    borderColor: '#ccc',
-    height: '15%',
-    gap: 20,
-
+    borderColor: '#ddd',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
 
-  obs: {
-    width: '100%',
-    backgroundColor: '#f9f9f9',
-    padding: 15,
-    borderRadius: 10,
-    height: 62
+  boton: {
+    backgroundColor: '#e74c3c',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    flex: 1,
+    marginLeft: 20
   },
 
-  textobs: {
-    color: '#666',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    marginLeft: 5
-    
+  botonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
-  
-  observation: {
-    margin: 20,
-    width: '90%',
-    display: 'flex',
+
+  direction: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  notFound: {
+    fontSize: 18,
+    color: 'red'
+  },
+
+  centered: {
+    flex: 1,
     justifyContent: 'center',
-    gap: 6,
-
+    alignItems: 'center',
   }
 });
+

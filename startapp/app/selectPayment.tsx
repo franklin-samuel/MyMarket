@@ -19,7 +19,7 @@ export default function SelectPaymentScreen() {
   const handleConfirm = () => {
     try {
       confirmOrder();
-      Alert.alert('Pedido confirmado!', 'Seu pedido foi registrado com sucesso.');
+      router.push('/confirmation');
     } catch (error: any) {
       Alert.alert('Erro', error.message);
     }

@@ -4,24 +4,24 @@
     "slug": "mymarket",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "assets/images/icon.png",
     "scheme": "mymarket",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "/images/load.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "assets/images/splash.png",
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.samuelfranklin.zz.mymarket"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +33,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "210690d9-cd1b-4834-8941-ba873f318446"
+      }
     }
   }
 }

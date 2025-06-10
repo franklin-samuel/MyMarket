@@ -58,8 +58,8 @@ export const products: Product[] = [
   },
   {
     id: "8",
-    name: "Azeite de Oliva Extra Virgem",
-    description: "Ideal para saladas e pratos finos",
+    name: "Azeite de Oliva",
+    description: "Ideal para",
     price: 22.0,
     image: "/images/azeite.jpg"
   },

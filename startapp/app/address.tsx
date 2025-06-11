@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   selectedCard: {
-    borderColor: '#e74c3c',
+    borderColor: '#ec364d',
     backgroundColor: '#ffeceb',
   },
   cardContent: {
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     borderRadius: 7,
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#ec364d',
   },
   checkView: {
     alignItems: 'center',
@@ -244,12 +244,13 @@ const styles = StyleSheet.create({
   trashIcon: {
     width: 24,
     height: 24,
+    tintColor: '#ec364d'
   },
   form: {
     marginBottom: 0,
   },
   button: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#ec364d',
     paddingVertical: 12,
     borderRadius: 6,
     alignItems: 'center',
@@ -277,12 +278,12 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   addButtonText: {
-    color: '#e74c3c',
+    color: '#ec364d',
     fontWeight: 'bold',
     fontSize: 16,
   },
   continueButton: {
-    backgroundColor: '#e74c3c',
+    backgroundColor: '#ec364d',
     paddingVertical: 12,
     borderRadius: 6,
     alignItems: 'center',

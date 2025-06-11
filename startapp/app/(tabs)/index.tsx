@@ -21,7 +21,7 @@ export default function HomeScreen() {
         }
         activeOpacity={0.7}
       >
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={item.image} style={styles.image} />
         <View style={styles.info}>
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.price}>R$ {item.price.toFixed(2)}</Text>
@@ -33,22 +33,19 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.header}>
         <Image
-          source={require('public/images/heder.jpg')}
+          source={require('../../assets/images/heder.png')}
           style={styles.headerImage}
         />
       </View>
-
 
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={renderProduct}
-        contentContainerStyle={{ paddingTop: 20, paddingBottom: 70 }}
+        contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
       />
-
 
       {cart.length > 0 && (
         <TouchableOpacity
@@ -57,6 +54,9 @@ export default function HomeScreen() {
           activeOpacity={0.8}
         >
           <View style={styles.iconandtext}>
+            <View style={styles.cartBadge}>
+              <Text style={styles.cartBadgeText}>{cart.length}</Text>
+            </View>
             <Image
               source={require('../../assets/images/carticon.png')}
               style={styles.iconCart}
@@ -78,17 +78,15 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#ec364d',
     paddingHorizontal: 16,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    height: 100
+    height: 100,
   },
   headerImage: {
     width: 120,
     maxHeight: 40,
-    marginTop: 30
-    
+    marginTop: 30,
   },
-
 
   card: {
     flexDirection: 'row',
@@ -112,46 +110,59 @@ const styles = StyleSheet.create({
   price: { fontSize: 16, color: '#555', marginTop: 4 },
   description: { fontSize: 14, color: '#888', marginTop: 6 },
 
-
   gotocart: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    bottom: 20,
+    left: 16,
+    right: 16,
     height: 60,
-    backgroundColor: '#fff',
-    borderTopColor: '#CCC',
-    borderTopWidth: 1,
+    backgroundColor: '#ec364d',
+    borderRadius: 35,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowColor: '#ec364d',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
   },
   iconandtext: {
-    marginLeft: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
   },
-  gotocartText: {},
+  cartBadge: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    marginRight: 10,
+  },
+  cartBadgeText: {
+    fontWeight: '700',
+    color: '#ec364d',
+    fontSize: 14,
+  },
+  gotocartText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+  },
   iconCart: {
-    width: 30,
-    height: 30,
+    width: 28,
+    height: 28,
+    tintColor: '#fff',
+    marginRight: 12,
   },
   total: {
     justifyContent: 'center',
     alignItems: 'flex-end',
-    width: '70%',
+    width: '35%',
   },
   totaltext: {
-    marginRight: 25,
     fontSize: 18,
-    color: '#e74c3c',
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

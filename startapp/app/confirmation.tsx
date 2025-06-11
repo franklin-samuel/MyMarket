@@ -11,6 +11,7 @@ export default function confirmationScreen() {
             loop
             style={styles.animation}
             />
+            <Text>Pedido realizado!</Text>
         </View>
     )
 }

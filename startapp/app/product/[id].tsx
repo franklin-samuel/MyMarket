@@ -63,7 +63,7 @@ export default function ProductDetail() {
     
       <View style={styles.page}>
         <ScrollView contentContainerStyle={styles.container}>
-          <Image source={{ uri: product.image }} style={styles.image} />
+          <Image source={ product.image } style={styles.image} />
           <View style={styles.box}>
             <View>
               <Text style={styles.name}>{product.name}</Text>
@@ -122,11 +122,13 @@ const styles = StyleSheet.create({
 
   image: {
     width: '100%',
-    height: 260,
+    height: 350,
     borderRadius: 12,
     marginBottom: 16,
     resizeMode: 'cover',
-    borderWidth: 1
+    borderWidth: 1,
+    borderColor: 'red',
+    
   },
 
   box: {

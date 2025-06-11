@@ -12,16 +12,20 @@ export default function ScreenCart() {
   function renderProduct({ item }: { item: any }) {
     return (
       <View style={styles.card}>
-        <Image source={{ uri: item.image }} style={styles.image} />
+        <Image source={item.image} style={styles.image} />
         <View style={styles.info}>
           <Text style={styles.name}>{item.name}</Text>
-          <Text style={styles.observation}>{item.observation}</Text>
+          {item.observation ? (
+            <Text style={styles.observation}>{item.observation}</Text>
+          ) : null}
 
           <View style={styles.row}>
             <View style={styles.quantidade}>
               <TouchableOpacity
                 onPress={() =>
-                  item.quantity === 1 ? updateQuantity(item.id, 0) : updateQuantity(item.id, item.quantity - 1)
+                  item.quantity === 1
+                    ? updateQuantity(item.id, 0)
+                    : updateQuantity(item.id, item.quantity - 1)
                 }
               >
                 <Text style={styles.qtdButton}>-</Text>
@@ -55,13 +59,17 @@ export default function ScreenCart() {
         data={cart}
         keyExtractor={(item) => item.id}
         renderItem={renderProduct}
-        contentContainerStyle={{ paddingVertical: 20, marginTop: 40 }}
+        contentContainerStyle={{ paddingVertical: 20, paddingBottom: 100, marginTop: 40 }}
       />
 
-      <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total: R$ {total.toFixed(2)}</Text>
-        <TouchableOpacity style={styles.clearButton} onPress={() => router.push('/address')}>
-          <Text style={styles.clearButtonText}>Continuar</Text>
+      <View style={styles.floatingContainer}>
+        <TouchableOpacity
+          style={styles.floatingButton}
+          onPress={() => router.push('/address')}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.floatingButtonText}>Finalizar pedido</Text>
+          <Text style={styles.floatingTotal}>R$ {total.toFixed(2)}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -72,7 +80,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
   page: {
     flex: 1,
@@ -80,37 +87,42 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#ffffff',
     marginHorizontal: 16,
     marginBottom: 16,
-    borderRadius: 10,
-    padding: 12,
-    gap: 12,
-    elevation: 2,
+    borderRadius: 16,
+    padding: 16,
+    gap: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
   },
   image: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
+    width: 90,
+    height: 90,
+    borderRadius: 12,
   },
   info: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   name: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#333',
     marginBottom: 4,
   },
   observation: {
     fontSize: 14,
-    color: '#666',
+    color: '#999',
     marginBottom: 10,
   },
-  total: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   quantidade: {
     flexDirection: 'row',
@@ -118,42 +130,51 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   qtdButton: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#e74c3c',
+    color: '#ec364d',
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 6,
+    backgroundColor: '#fcebed',
+    borderRadius: 8,
   },
   qtdText: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  totalContainer: {
-    borderTopWidth: 1,
-    borderColor: '#ccc',
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  totalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  clearButton: {
-    backgroundColor: '#e74c3c',
-    paddingVertical: 12,
-    borderRadius: 6,
-    alignItems: 'center',
-  },
-  clearButtonText: {
-    color: '#fff',
+  total: {
     fontSize: 16,
+    fontWeight: 'bold',
+    color: '#111',
+  },
+  floatingContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 16,
+    right: 16,
+  },
+  floatingButton: {
+    backgroundColor: '#ec364d',
+    borderRadius: 35,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    shadowColor: '#ec364d',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  floatingButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  floatingTotal: {
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
   },
   noone: {

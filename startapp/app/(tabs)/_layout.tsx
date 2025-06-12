@@ -60,6 +60,7 @@ export default function TabsLayout() {
           options={{
             title: 'Pedidos',
             tabBarActiveTintColor: '#e74c3c',
+            headerShown: false,
             tabBarIcon: ({ focused, color, size }) => (
               <Image
                 source={require('../../assets/images/cedula.png')}

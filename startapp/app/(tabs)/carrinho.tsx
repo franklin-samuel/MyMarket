@@ -47,7 +47,7 @@ export default function ScreenCart() {
     return (
       <View style={styles.page}>
         <View style={styles.noone}>
-          <Text>Seu carrinho está vazio 😢</Text>
+          <Text style={styles.nohave}>Seu carrinho está vazio</Text>
         </View>
       </View>
     );
@@ -162,10 +162,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     shadowColor: '#ec364d',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.35,
     shadowRadius: 8,
-    elevation: 6,
+    elevation: 10,
+    height: 60
   },
   floatingButtonText: {
     color: '#fff',
@@ -182,4 +183,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  nohave: {
+    fontStyle: 'italic',
+    color: '#ccc'
+  }
 });

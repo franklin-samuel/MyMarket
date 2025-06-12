@@ -13,7 +13,7 @@ export default function RootLayout() {
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="product/[id]" options={{ title: '', headerShadowVisible: false }} />
-              <Stack.Screen name="confirmation" options={{ title: 'Confirmar Pedido' }} />
+              <Stack.Screen name="confirmation" options={{ title: 'Confirmar Pedido', headerShown: false }} />
               <Stack.Screen name='address' options={{ title: '', headerShadowVisible: false }}/>
               <Stack.Screen name='selectPayment' options={{ title: 'Pagamento', headerShadowVisible: false }}/>
             </Stack>

@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 const deliveryOptions = ['Entrega', 'Retirada'] as const;
 const paymentOptions = ['Pix', 'Dinheiro', 'Cartão'] as const;
 
-const primaryColor = '#e74c3c';
+const primaryColor = '#ec364d';
 
 export default function SelectPaymentScreen() {
   const { order, setDeliveryType, setPaymentMethod, confirmOrder } = useOrder();

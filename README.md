@@ -99,7 +99,7 @@ npm install -g expo-cli
 1. Clone o repositório:
 
 ```
-git clone https://github.com/franklin-samuel/MymMarket.git
+git clone https://github.com/franklin-samuel/MyMarket.git
 ```
 
 2. Acesse o diretório do projeto:

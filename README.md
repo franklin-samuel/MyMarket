@@ -139,7 +139,7 @@ npx expo start
 
 Caso você represente uma empresa, startup ou núcleo de tecnologia interessado no projeto, sinta-se à vontade para entrar em contato:
 
-- 📧 Email: seuemail@exemplo.com  
+- 📧 Email: samuelfranklinff@gmail.com  
 - 💼 Telefone: 55+ (84) 9 9921-6842  
 - 🧠 Desenvolvedor: Samuel Franklin
 

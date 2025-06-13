@@ -137,7 +137,7 @@ npx expo start
 
 ## 🤝 Contato
 
-Caso você represente uma empresa, startup ou núcleo de tecnologia interessado no projeto, sinta-se à vontade para entrar em contato:
+Caso você represente uma empresa, startup ou núcleo de tecnologia ou um dev interessado, sinta-se à vontade para entrar em contato:
 
 - 📧 Email: samuelfranklinff@gmail.com  
 - 💼 Telefone: 55+ (84) 9 9921-6842  

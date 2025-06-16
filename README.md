@@ -20,8 +20,7 @@ O projeto foi construído com uma stack moderna e escalável:
 
 ## 📱 Funcionalidades
 
-- ✅ Adicionar e remover produtos do carrinho  
-- ✅ Seleção de endereço e opção de salvar para futuras compras  
+- ✅ Adicionar e remover produtos do carrinho    
 - ✅ Confirmação de pedido com animação de sucesso via Lottie  
 - ✅ Histórico de pedidos com dados persistentes localmente  
 - ✅ Integração fluida com React Context para compartilhamento de dados entre telas  
@@ -137,7 +136,7 @@ npx expo start
 
 ## 🤝 Contato
 
-Caso você represente uma empresa, startup ou núcleo de tecnologia ou um dev interessado, sinta-se à vontade para entrar em contato:
+Caso você represente uma empresa, startup, núcleo de tecnologia ou um dev interessado, sinta-se à vontade para entrar em contato:
 
 - 📧 Email: samuelfranklinff@gmail.com  
 - 💼 Telefone: 55+ (84) 9 9921-6842  

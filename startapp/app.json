@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "assets/images/splash.png",
+      "image": "assets/images/splash.jpg",
       "backgroundColor": "#000000"
     },
     "ios": {
@@ -38,6 +38,12 @@
       "router": {},
       "eas": {
         "projectId": "210690d9-cd1b-4834-8941-ba873f318446"
+      }
+    },
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": ["react-native-splash-screen", "uuid"],
+        "listUnknownPackages": false
       }
     }
   }

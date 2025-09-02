@@ -146,6 +146,5 @@ Caso você represente uma empresa, startup, núcleo de tecnologia ou um dev inte
 
 ## 👨‍💻 Desenvolvedores
 
-- [@franklin-samuel](https://github.com/franklin-samuel) — Mobile Developer  
-- [@Wallysom-fer](https://github.com/Wallysom-fer) — DevOps
+- [@franklin-samuel](https://github.com/franklin-samuel) — Mobile Developer
 
